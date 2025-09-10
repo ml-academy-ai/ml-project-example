@@ -1,0 +1,9 @@
+name: ml_app_dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip=23.1.2
+  - python=3.10.1
+prefix: /opt/miniconda3/envs/ml_app_dev
+

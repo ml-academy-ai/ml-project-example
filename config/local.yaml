@@ -1,0 +1,23 @@
+data:
+  raw_data_path: "data/01-raw/customer_data.csv"
+  train_path: "data/02-preprocessed/train.csv"
+  test_path: "data/02-preprocessed/test.csv"
+  validation_split: 0.2
+  target_column: "churn"
+
+preprocessing:
+  handle_missing: "median"  # median, mean, drop
+  categorical_encoding: "onehot"  # onehot, label, target
+  numerical_scaling: "standard"  # standard, minmax, robust
+  feature_selection:
+    method: "correlation"
+    threshold: 0.8
+
+model:
+  type: "RandomForest"
+  parameters:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 5
+    min_samples_leaf: 2
+    random_state: 42

@@ -1,0 +1,35 @@
+stages:
+  - lint
+  - test
+  - build
+  - deploy
+
+lint:
+  stage: lint
+  image: python:3.11
+  script:
+    - pip install flake8 black
+    - flake8 src/
+    - black --check src/
+
+tests:
+  stage: test
+  image: python:3.11
+  script:
+    - pip install -r requirements.txt
+    - pytest tests/
+
+docker-build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t my-ml-app:latest .
+
+deploy:
+  stage: deploy
+  only:
+    - main
+  script:
+    - echo "Deploying model service..."
